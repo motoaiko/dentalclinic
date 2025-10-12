@@ -1,0 +1,37 @@
+/* -----------------------------------------*/
+// レスポンシブ対応
+/* -----------------------------------------*/
+@mixin mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: 1250px) {
+    @content;
+  }
+}
+
+
+/* -----------------------------------------*/
+// 共通ボタン（矢印はcss対応）
+/* -----------------------------------------*/
+@mixin button($width,$height,$padding){
+  width: $width;
+  height: $height;
+  background-color:#1A7D84 ;
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+  padding: $padding;          
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+
+
+
+

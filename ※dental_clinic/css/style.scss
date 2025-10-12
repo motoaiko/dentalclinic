@@ -1,0 +1,1028 @@
+@use 'global/variables'as *;
+@use 'global/mixins'as *;
+
+@use 'layout/header'as *;
+@use 'layout/footer'as *;
+
+/* -----------------------------------------*/
+/*style.scss
+/* -----------------------------------------*/
+html{
+    font-size: $font-size-base;
+}
+body{
+    font-family: $main-font-family;
+    font-weight: 400;
+    font-style: normal;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    font-size: 1.6em;
+    color:$text-color;
+    @include mobile{
+        font-size: 1.4rem;
+    }
+
+}
+.wrapper{
+    margin: 0 auto;
+    @include tablet{
+    padding: 0 16px;
+    }
+}
+.wrapper1080{
+    max-width: 1080px;
+    margin-bottom: 105px;
+    @include mobile{
+        margin-bottom: 5.3rem;
+    }
+}
+.wrapper900{
+    max-width: 900px;
+}
+.full-image-wrapper {//mobileの時に画像を画面いっぱいに広げる
+    @include mobile{
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    width: 100vw;
+    }
+}
+
+.header__h2{
+    font-family: "Noto Sans JP", sans-serif;
+    font-weight: 700;
+    font-size: 3.6rem;
+    color: #1A7D84;
+    margin: 1.2rem 0 1.1rem;
+    padding-left: 2.4rem;
+    position: relative;
+
+    @include mobile{
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        padding-left: 2.2rem;
+    }
+
+    &::before{
+    content: "";
+    width: 1.2rem;
+    height: 4.8rem;
+    background-color: #A1CBCE;
+    position: absolute;
+    top: 0.4rem;
+    left:0;
+
+    @include mobile{
+        height: 3.5rem;
+        top: -2.5px;
+    }
+
+    }
+}
+.medical .header__h2::before,
+.virus .header__h2::before,
+.news .header__h2::before,
+.access .header__h2::before,
+.reception .header__h2::before{
+    display: none;
+}
+.header__h3{
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1.7rem;
+    color: #1A7D84;
+
+}
+.btn-text{
+    flex: 1;
+    text-align: center;
+}
+/* ---------------------------------------- */
+/*リンクボタン矢印*/
+/* ---------------------------------------- */
+
+.arrow{ 
+    position: relative; 
+    display: inline-block; 
+    width: 35px;    
+    height: 1px; 
+    margin-top: 7px; 
+    border-radius: 9999px; 
+    background-color: #ffffff; 
+
+    &::before { 
+        content: ""; 
+        position: absolute; 
+        top: calc(50% - 0.5px); 
+        right: 0; 
+        width: 10.9px; 
+        height: 1px; 
+        border-radius: 9999px; 
+        background-color: #ffffff; 
+        transform: rotate(25deg); 
+        transform-origin: calc(100% - 0.5px) 50%; 
+    }
+    
+} 
+/* ---------------------------------------- */
+/*フェードアップjs*/
+/* ---------------------------------------- */
+
+.js-fadeup{
+    opacity: 0;
+    transform: translateY(200px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.js-fadeup.is-inview{
+    opacity: 1;
+    transform: translateY(0px);
+    transition-delay:0.5s;
+}
+/* -----------------------------------------*/
+/* topへ戻るボタン */
+/* -----------------------------------------*/
+#pageTop{
+    opacity: 0;
+    pointer-events: none;
+    position: fixed;
+    bottom: 39%;
+    right: 1.6rem;
+    background-color: #fff;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 1000;
+    width: 50px;
+    height: 50px;
+    border-radius: 10%;
+    border: 3px solid #A1CBCE;
+
+    a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);  
+}
+}
+
+#pageTop.show {
+    pointer-events: auto; /* ← 表示されたらクリック可能に */
+    opacity: 1;
+}
+.back-to-top{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.arrow-top {
+  position: relative;
+  display: inline-block;
+  width: 3px;
+  height: 31px;
+  margin: 0 7.1px;
+  border-radius: 9999px;
+  background-color: #a1cbce;
+  
+}
+
+.arrow-top::before,
+.arrow-top::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  height: 13px;
+  border-radius: 9999px;
+  background-color: #a1cbce;
+  transform-origin: 50% 1.5px;
+}
+
+.arrow-top::before {
+  transform: rotate(45deg);
+}
+
+.arrow-top::after {
+  transform: rotate(-45deg);
+}
+/* =========================================*/
+/*mv*/
+/* =========================================*/
+.mv{
+    position: relative;
+    margin-bottom: 18.6rem;
+}
+.overlay__img.slider {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+}
+.slider img {  //スライダー画像の大きさをそろえる
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.mv-img {
+    height: 100%;
+}
+
+.mv__overlay{
+    color:$primary-color;
+
+    position: absolute;  
+
+}
+.mv__catch{
+    top: 9%;
+    left: 7%;
+    padding: 4rem 4.5rem;
+    font-size: 3.6rem;
+    background-color: rgba(255, 255, 255, 0.57);
+    
+    @include mobile{
+        font-size: 2.4rem;
+        top: 26%;
+        left: 1.7rem;
+        padding: 3.5rem 5rem 3.5rem 3.5rem;
+        }
+    }
+    
+/* -----------------------------------------*/
+/* 診療時間 */
+/* -----------------------------------------*/
+.mv__hours{
+    bottom: -7rem;
+    right: 11.7rem;
+    width: 46.8rem;
+    @include mobile{
+right: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 85.6%;
+        bottom: -155px;
+    }
+}
+
+
+.hours__table-wrapper{
+    padding: 2.7rem 2.1rem 3rem;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.87);
+    position: relative;
+    margin: 0 auto;
+
+    @include mobile{
+        width: 85.7%;
+        padding: 1.9rem 1.4rem 2rem;
+    }
+    
+    &::before,
+    &::after{
+    position: absolute;
+    content: "";
+    width: 55%;
+    height: 9.3rem;
+    bottom: -5%;
+    z-index: -10;
+
+    }   
+    &::before{
+    background-color: #F1F5C3;
+    left: -5%
+    }
+    &::after{
+    background-color: rgba(26, 125, 132, 0.26);
+    right: -5%;
+    }
+}
+.hours__table-label{
+    font-size: 2rem;
+    margin-bottom: 4rem;
+    @include mobile{
+        font-size: 1.6rem;
+        margin-bottom: 2.7rem;
+
+    }
+
+}
+.hours__table {
+    width: 91%;
+    box-sizing: border-box;
+    margin: 0 auto;
+
+}
+.hours__table-header, .hours__table-cell {
+    padding: 15px;
+    border-bottom: 1px solid $primary-color;
+    font-weight: 400;
+    @include mobile{
+        padding: 5% 0;
+    }
+}
+.hours__table-header{
+    @include mobile{
+    padding: 0;
+    text-align: start;
+    }
+}
+#hours-original{
+    .break{
+        display: none;
+    }
+
+}
+/* =========================================*/
+/*doctor section*/
+/* =========================================*/
+.doctor{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+
+    @include mobile{
+        flex-direction: column;
+    }
+}
+.doctor__text-area{
+    width: 40%;
+    padding-left: 17px;
+
+    @include mobile{
+        width: 100%;
+        margin-bottom: 4rem;
+        padding-left: 0;
+    }
+
+}
+.doctor__text{
+    margin-bottom: 2.1rem;
+    @include mobile{
+        margin-bottom: 4rem;
+    }
+}
+.doctor__img-area{
+    width: 60%;
+
+    @include mobile{
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+    }
+}
+/* -----------------------------------------*/
+/*doctorリンクボタン*/
+/* -----------------------------------------*/
+.btn-doctor {
+    margin-left: -65px;
+    @include button(28rem, 6rem, 1.8rem);
+
+    @include mobile{
+        margin: 0 auto;
+    }
+
+}
+.arrow-doctor::before {
+    content: "";
+    position: absolute;
+    top: calc(50% - 0.5px);
+    left: 0;
+    width: 12.1px;
+    height: 1px;
+    border-radius: 9999px;
+    background-color: #ffffff;
+    transform: rotate(-25deg);
+    transform-origin: 0.5px 50%;
+}
+
+/* =========================================*/
+/*clinic section*/
+/* =========================================*/
+.clinic{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @include mobile{
+        flex-direction: column;
+    }
+}
+.clinic__text-area{
+    width: 40%;
+    padding-right: 16px;
+
+    @include mobile{
+        width: 100%;
+        margin-bottom: 4rem;
+        padding-left: 0;
+    }
+
+
+}
+.clinic__text{
+    margin-bottom: 2.4rem;
+    @include mobile{
+        margin-bottom: 4rem;
+    }
+}
+.clinic__img-area{
+    width: 60%;
+
+    @include mobile{
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+    }
+}
+/* -----------------------------------------*/
+/*clinicリンクボタン*/
+/* -----------------------------------------*/
+.btn-clinic {
+    margin-left: 186px;
+    position: relative;
+    z-index: 10;
+    justify-content: flex-end;
+    @include button(28rem, 6rem, 1.8rem);
+
+    @include mobile{
+        margin: 0 auto;
+    }
+
+}
+
+/* =========================================*/
+/*medical section*/
+/* =========================================*/
+.medical{
+margin-bottom: 7.1rem;
+    background-color: #DAEAEB;
+    background-image: url(../img/bg-dental.png);
+    position: relative;
+    background-size: 57%;
+    overflow: hidden;
+    background-position: bottom 50px right 0px;
+
+    @include mobile{
+        background-image: none;
+        margin-bottom: 2.1rem;
+    }
+}
+
+.medical__header{
+    margin: 0;
+    padding: 4.4rem 0 6.3rem;
+    text-align: center;
+
+        @include mobile{
+        padding-top: 4.9rem;
+        margin-bottom: 3.8rem;
+        }
+
+        &::before{
+        content: "";
+        position: absolute;
+        top: 2%;
+        left: 50%;
+        transform: translatex(-50%);
+        width: 11.7rem;
+        height: 11.7rem;
+        border: 5px solid rgb(255, 255, 255);
+        border-radius: 50%;
+            @include mobile{
+            width: 9.2rem;
+            height: 9.2rem;
+            top: 30%;
+            }
+        }
+
+
+
+}
+.header--jp{
+    font-size: 1.6rem;
+        @include mobile{
+            font-size: 1.4rem;
+            font-weight: 400;
+        }
+}
+.medical-grid{
+    max-width: 108rem;
+    margin: 0 auto 5.6rem;
+    @include mobile{
+        margin-bottom:2.4rem;
+    }
+}
+.medical-grid__list{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2.7rem;
+
+    @include mobile{
+        grid-template-columns: 1fr;
+        gap: .8rem;
+    }
+}
+.medical-grid__text{
+    margin: 0 auto 4.8rem;
+    width: 80%;
+    @include mobile{
+        margin-bottom:0;
+        width: 65%;
+        padding: 1.8rem 1.6rem;
+    }
+
+
+}
+.medical-grid__item{
+    background: #fff;
+
+    @include mobile{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    }
+
+}
+.medical-grid__img{
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    @include mobile{
+        width: 35%;
+    }
+
+}
+//"ホワイトニング"mobile改行
+.break-word {
+    display: inline-block;
+    @include mobile {
+    display: block; 
+    }
+}
+
+.medical__img{
+    margin: 3rem 0 1.6rem;
+}
+.btn-medical__text,
+.btn-news__text,
+.btn-virus__text{
+    @include mobile{
+        font-size: 1.6rem;
+    }
+}
+
+.medical__btn-area{
+    padding-bottom: 5.8rem;
+    @include mobile{
+padding-bottom: 3.2rem;    
+}
+}
+.btn-medical{
+        margin: 0 auto;
+        justify-content: center;
+
+    @include button(60%, 6.8rem, 0 3.4rem);
+    @include mobile{
+        @include button(31.5rem,4.5rem,0 2rem);
+    }
+}
+.arrow-medical,
+.arrow-news,
+.arrow-virus{
+    @include mobile{
+        width: 1.6rem;
+        &::before{
+            width: 8px;
+        }
+    }
+}
+
+
+.medical-header {
+    position: relative;
+    text-align: center;
+    padding: 6rem 0;
+
+    &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12rem;
+    height: 12rem;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 5px solid #fff;
+    background-color: #DAEAEB;
+    z-index: -1;
+    }
+}
+
+.medical-header__en {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 0.2em;
+    color: #1A7D84;
+}
+
+.medical-header__jp {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    color: #333;
+}
+/* =========================================*/
+/*news section*/
+/* =========================================*/
+.news__section{
+    margin-bottom: 8.7rem;
+    @include mobile{
+        margin-bottom: 2.1rem;
+    }
+}
+.news{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2.6rem;
+    margin-bottom: 4.7rem;
+    @include mobile{
+        gap: 0;
+        margin-bottom: 2.4rem;
+    }
+}
+.news__h2-inner{
+    margin-bottom: 5.2rem;
+    @include mobile{
+        margin-bottom: .7rem;
+    }
+}
+
+
+.news-header,
+.virus-header,
+.access-header,
+.reception-header{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 1.6rem;
+}
+.news-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    @include mobile{
+            margin-bottom: 2.4rem;
+            gap: .8rem;
+    }
+}
+.news__link{
+    display: flex;
+    align-items: flex-start;
+    gap: 3.3rem;
+    @include mobile{
+        flex-direction: column;
+        gap: 0;
+    }
+}
+.news-date {
+  flex: 0 0 100px; /* 固定幅 */
+  @include mobile{
+    flex: 0;
+  }
+}
+.news__text {
+  flex: 1; /* 残りの幅を使う */
+}
+/* -----------------------------------------*/
+/*newsリンクボタン*/
+/* -----------------------------------------*/
+.btn-news{
+    position: relative;
+    z-index: 10;
+    justify-content: flex-end;
+
+    @include button(35rem, 6.8rem, 2rem);
+
+    @include mobile{
+        @include button(31.5rem,4.5rem,0 2rem);
+        margin: 0 auto;
+    }
+}
+/* -----------------------------------------*/
+/*newsスライダー*/
+/* -----------------------------------------*/
+.slider__img{
+    margin-left: 0.8rem;
+}
+
+/* =========================================*/
+/*virus section*/
+/* =========================================*/
+.virus{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.4rem;
+    margin-bottom: 7.1rem;
+    @include mobile{
+        flex-direction: column;
+        gap: 0;
+        margin-bottom: 2.4rem;
+    }
+}
+.virus__h2-inner{
+    margin-bottom: 2rem;
+    @include mobile{
+        margin-bottom: .7rem;
+    }
+}
+.virus__right{
+    width: 70%;
+    @include mobile{
+        width: 100%;
+    }
+}
+.virus__left{
+    width: 30%;
+    @include mobile{
+        width: 100%;
+    }
+}
+.virus__text{
+    margin-bottom: 4.2rem;
+    @include mobile{
+        margin-bottom: 2.4rem;
+    }
+}
+.btn-virus{
+    position: relative;
+    z-index: 10;
+    justify-content: flex-end;
+    @include button(35rem, 6.8rem, 2rem);
+
+    @include mobile{
+        @include button(31.5rem,4.5rem,0 2rem);
+        margin: 0 auto 2.4rem;
+    }
+}
+.virus__right{
+    @include mobile{
+            position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        width: 100vw;
+}
+}
+
+/* =========================================*/
+/*access section*/
+/* =========================================*/
+.access{
+    margin-bottom:7.6rem ;
+    @include mobile{
+        margin-bottom: 2.4rem;
+    }
+
+}
+.access__h2-inner{
+    margin-bottom: 2.3rem;
+    @include mobile{
+        margin-bottom: .7rem;
+    }
+}
+.access-header,
+.reception-header{
+    justify-content: center;
+}
+
+.map{
+    margin-bottom: 2rem;
+    @include mobile{
+        margin: 0;
+    }
+}
+
+.map__img{
+    width: 100%;
+    height: 30rem;
+}
+.acccess__list,
+.access__address{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    @include mobile{
+            display: block;
+    }
+
+
+}
+.access__address{
+    margin-bottom: 1.8rem;
+    @include mobile{
+        margin-bottom: 1.3rem;
+    } 
+}
+.access__train{
+    @include mobile{
+        margin-bottom: 2.4rem;
+    }
+}
+
+.access__train--top{
+    margin-bottom: .8rem;
+}
+.map-button{
+    background-color: inherit;
+
+
+
+    .button--tel__text{
+        padding: 0;
+    }
+    .button--tel__number{
+        justify-content: flex-end;
+    }
+        @include mobile{
+        display: inline;
+    }
+}
+
+/* =========================================*/
+/*reception section*/
+/* =========================================*/
+.reception{
+    color: $primary-color;
+    max-width: 79rem;
+    margin-bottom: 10.8rem;
+}
+
+.reception__h2-inner{
+    margin-bottom: 3rem;
+    @include mobile{
+        margin-bottom: 1.3rem;
+    }
+}
+/*診療時間テーブル*/
+#hours-in-visual {
+    
+    margin-bottom: 1.5rem;
+    @include mobile{
+        margin-bottom: .8rem;
+    }
+    .hours__table-wrapper {
+        @include mobile{
+            width: 100%;
+        }
+    }
+
+    .hours__table {
+    width: 100%;
+
+    &--bordered {
+        .hours__table-header,
+        .hours__table-cell {
+        border: 1px solid #005f5f;
+        text-align: center;
+        }
+    }
+    }
+
+    .hours__table-label,
+    .hours__table-wrapper::after,
+    .hours__table-wrapper::before {
+    display: none;
+    }
+
+    .hours__table-wrapper {
+    padding: 0;
+    background-color: inherit;
+    }
+    .break {
+    display: none;//時間の改行
+    }
+    @include mobile {
+    .break {
+    display: inline; 
+    }
+    }
+}
+.reception__closed,
+.reception__reserve{
+    display: inline;
+    @include mobile{
+        display: block;
+    }
+
+}
+.reception__reserve{
+    padding-left:5rem;
+    @include mobile{
+        padding: 0;
+    }
+}
+
+/* =========================================*/
+/*footer section*/
+/* =========================================*/
+
+.footer__wrapper{    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 37.5rem;
+    background-color: #1A7D84;
+    color: #fff;
+    @include mobile{
+        flex-direction: column;
+        height: 42.8rem;
+        justify-content: flex-start;
+    }
+
+
+
+ .button--tel__number{
+    color: inherit;
+}
+.access__address{
+    gap: 1.8rem;
+    justify-content: flex-start;    
+}
+.access__item{
+        margin-bottom: 4.4rem;
+        @include mobile{
+            margin-bottom: 4.2rem;
+        }
+
+}
+    }
+/* =========================================*/
+/*footer section*/
+/* =========================================*/
+.footer__wrapper{
+    width: 100%;
+}
+
+.footer__left,
+.footer__right{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    @include mobile{
+        width: 100%;
+    }
+
+}
+.footer__left{
+    @include mobile{
+        margin-top: 4.1rem;
+    }
+}
+
+
+.footer__h1{
+    width: 24.5rem;
+    margin-bottom: 2.7rem;
+    @include mobile{
+        margin-bottom: .9rem;
+    }
+
+}
+.footer{
+    .access__address{
+        @include mobile{
+        margin-bottom: 3.1rem;
+        }
+        }
+    .access__train {
+        @include mobile{
+        margin-bottom: 0;
+        }
+    }
+}
+
+
+
+
+
