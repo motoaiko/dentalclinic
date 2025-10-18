@@ -1,71 +1,53 @@
-document.addEventListener('DOMContentLoaded', function () {
-/* ---------------- */
-// ハンバーガーメニュー
-/* ---------------- */
 $(function () {
-    
-    $(".hamburger").on('click',function () {
+  // ハンバーガーメニュー
+  $(".hamburger").on('click', function () {
     $(".hamburger").toggleClass("open");
     $(".header__wrapper").toggleClass("open");
     updateMenuText();
-    });
+  });
 
-    $(".header__nav a").on('click',function () {
+  $(".nav__contents a").on('click', function () {
     $(".hamburger").removeClass("open");
     $(".header__wrapper").removeClass("open");
     updateMenuText();
-    });
+  });
 
-    function updateMenuText() {
-        const menuText = $(".hamburger__text");
-        if ($(".hamburger").hasClass("open")) {
-            menuText.text("CLOSE");
-        } else {
-            menuText.text("MENU");
-        }
-    }
-});
+  function updateMenuText() {
+    const menuText = $(".hamburger__text");
+    menuText.text($(".hamburger").hasClass("open") ? "CLOSE" : "MENU");
+  }
 
-/* ---------------- */
-/* mv-slider */
-/* ---------------- */
-
-$(document).ready(function(){
+  // mv-slider
   $('.mv__slider').slick({
-    slidesToShow: 1,// 画面表示1枚
-    slidesToScroll: 1,// 1枚ずつスクロール
+    slidesToShow: 1,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,// 一枚の持続時間
-    speed: 1500,//1.5秒かけてスライド
-    cssEase: 'ease',// 
-    infinite: true,// 無限ループ
-    arrows: false,// 矢印非表示
+    autoplaySpeed: 3000,
+    speed: 1500,
+    cssEase: 'ease',
+    infinite: true,
+    arrows: false,
     pauseOnHover: false,
     pauseOnFocus: false,
-    adaptiveHeight: false // ← 高さを固定するために false に
+    adaptiveHeight: false
   });
-});
 
-/* ---------------- */
-/* news-slider */
-/* ---------------- */
-
-$(document).ready(function(){
+  // news-slider
   $('.news__slider').slick({
-    slidesToShow: 5,// 画面表示
-    slidesToScroll: 1,// 1枚ずつスクロール
+    slidesToShow: 5,
+    slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 0,// 一枚の持続時間
+    autoplaySpeed: 0,
     centerMode: true,
     centerPadding: "10%",
-    speed: 4000,//スライド秒
-    cssEase: 'linear',// 
-    infinite: true,// 無限ループ
-    arrows: false,// 矢印非表示
+    speed: 4000,
+    cssEase: 'linear',
+    infinite: true,
+    arrows: false,
     pauseOnHover: false,
     pauseOnFocus: false,
     adaptiveHeight: false,
-        responsive: [
+    responsive: [
       {
         breakpoint: 768,
         settings: {
@@ -75,58 +57,44 @@ $(document).ready(function(){
       }
     ]
   });
-});
 
+  // topへ戻るボタン
+  $(window).on("scroll", function () {
+    $("#pageTop").toggleClass("show", $(this).scrollTop() > 1000);
+  });
 
-/* ---------------- */
-/* topへ戻るボタン */
-/* ---------------- */
-$(window).on("scroll",function(){
-  if($(this).scrollTop()>1000){
-    $("#pageTop").addClass("show");
-  }else{
-    $("#pageTop").removeClass("show")
-  }
-});
+  $('#pageTop').click(function () {
+    $('html, body').animate({ scrollTop: 0 }, 600, 'swing');
+    return false;
+  });
 
-/* ---------------- */
-/* キャッチコピー（トップとハンバーガーメニューにコピー）*/
-/* ---------------- */
-const sharedHTML = document.getElementById("sharedText").innerHTML;
-document.getElementById("copiedText").innerHTML = sharedHTML;
+  // ページ内リンク
+  $('a[href^="#"]').click(function (event) {
+    event.preventDefault();
+    const target = $($(this).attr("href"));
+    const offset = 200;
+    $('html, body').animate({ scrollTop: target.offset().top - offset }, 600, 'swing');
+  });
 
-/* ---------------- */
-/* 診療時間テーブル（セクションにコピー）*/
-/* ---------------- */
-const original = document.getElementById('hours-original');
-const clone = original.cloneNode(true);
-document.getElementById('hours-in-visual').appendChild(clone);
+  // コピー処理
+  const sharedHTML = document.getElementById("sharedText").innerHTML;
+  document.getElementById("copiedText").innerHTML = sharedHTML;
 
-/* ---------------- */
-/* フェードアップ*/
-/* ---------------- */
-$(function(){
-  $(window).on('scroll load', function(){
+  const original = document.getElementById('hours-original');
+  const clone = original.cloneNode(true);
+  document.getElementById('hours-in-visual').appendChild(clone);
+
+  // フェードアップ
+  $(window).on('scroll load', function () {
     const winTop = $(window).scrollTop();
     const winHeight = $(window).height();
 
-    $('.js-fadeup').each(function(){
+    $('.js-fadeup').each(function () {
       const targetTop = $(this).offset().top;
-
-      if (winTop + winHeight > targetTop + 10) {
-        $(this).addClass('is-inview');
-      } else {
-        $(this).removeClass('is-inview'); // 一度きりにしたい場合は削除
-      }
+      $(this).toggleClass('is-inview', winTop + winHeight > targetTop + 10);
     });
-
-
   });
-});
 
-$(function(){
-  // ページ読み込み後にクラスを付与
+  // スライドイン
   $('.js-slidein').addClass('is-inview');
-});
-
 });

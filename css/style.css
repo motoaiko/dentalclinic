@@ -53,6 +53,7 @@
     width: 100%;
     background-color: inherit;
     flex-direction: column-reverse;
+    justify-content: end;
   }
 }
 
@@ -81,6 +82,12 @@
   background-color: #fff;
   text-align: center;
   font-size: 2rem;
+  transition: transform 0.4s ease;
+  transform: scale(1);
+}
+.button-wrapper:hover {
+  background-color: #DAEAEB;
+  transform: scale(1.1);
 }
 
 .button--reserve {
@@ -295,8 +302,10 @@
     padding-top: 36px;
     font-size: 1.2rem;
   }
-} /* -----------------------------------------*/
-/*style.scss
+}
+
+/* -----------------------------------------*/
+/*style.scss(common)
 /* -----------------------------------------*/
 html {
   font-size: 10px;
@@ -384,6 +393,16 @@ body {
   }
 }
 
+.header--jp {
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+@media (max-width: 768px) {
+  .header--jp {
+    font-size: 1.4rem;
+  }
+}
+
 .medical .header__h2::before,
 .virus .header__h2::before,
 .news .header__h2::before,
@@ -428,6 +447,12 @@ body {
   transform: rotate(25deg);
   transform-origin: calc(100% - 0.5px) 50%;
 }
+.arrow:hover {
+  background-color: #1A7D84;
+}
+.arrow:hover::before {
+  background-color: #1A7D84;
+}
 
 /* ---------------------------------------- */
 /*フェードアップjs*/
@@ -449,7 +474,6 @@ body {
 /* -----------------------------------------*/
 #pageTop {
   opacity: 0;
-  pointer-events: none;
   position: fixed;
   bottom: 39%;
   right: 1.6rem;
@@ -473,19 +497,14 @@ body {
   opacity: 1;
 }
 
-.back-to-top {
-  position: absolute;
+.arrow-top {
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
-
-.arrow-top {
-  position: relative;
   display: inline-block;
   width: 3px;
   height: 31px;
-  margin: 0 7.1px;
   border-radius: 9999px;
   background-color: #a1cbce;
 }
@@ -509,6 +528,22 @@ body {
 
 .arrow-top::after {
   transform: rotate(-45deg);
+}
+
+.fixed-bg {
+  height: 50vh;
+  margin-bottom: 100px;
+  background-image: url(../img/swing.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+}
+@media (max-width: 768px) {
+  .fixed-bg {
+    height: 20vh;
+    margin-bottom: 20px;
+  }
 }
 
 /* =========================================*/
@@ -708,10 +743,32 @@ body {
   font-size: 2rem;
   text-align: center;
   padding: 1.8rem;
-  transition: all 0.3s ease;
+  transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transform: translateX(0);
+}
+.btn-doctor .arrow,
+.btn-doctor .arrow::before {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.btn-doctor:hover .arrow,
+.btn-doctor:hover .arrow::before {
+  background-color: #1A7D84;
+}
+.btn-doctor:hover {
+  color: #1A7D84;
+  background-color: #fff;
+  border: 1px solid #1A7D84;
+  transform: translateX(30px);
+}
+.btn-doctor:hover {
+  transform: translateX(-30px);
 }
 @media (max-width: 768px) {
   .btn-doctor {
@@ -719,6 +776,9 @@ body {
   }
 }
 
+.arrow-doctor {
+  position: relative;
+}
 .arrow-doctor::before {
   content: "";
   position: absolute;
@@ -730,6 +790,9 @@ body {
   background-color: #ffffff;
   transform: rotate(-25deg);
   transform-origin: 0.5px 50%;
+}
+.arrow-doctor:hover::before {
+  background-color: #1A7D84;
 }
 
 /* =========================================*/
@@ -796,10 +859,29 @@ body {
   font-size: 2rem;
   text-align: center;
   padding: 1.8rem;
-  transition: all 0.3s ease;
+  transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transform: translateX(0);
+}
+.btn-clinic .arrow,
+.btn-clinic .arrow::before {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.btn-clinic:hover .arrow,
+.btn-clinic:hover .arrow::before {
+  background-color: #1A7D84;
+}
+.btn-clinic:hover {
+  color: #1A7D84;
+  background-color: #fff;
+  border: 1px solid #1A7D84;
+  transform: translateX(30px);
 }
 @media (max-width: 768px) {
   .btn-clinic {
@@ -826,52 +908,45 @@ body {
   }
 }
 
+.medical__h2-area {
+  width: 117px;
+  height: 117px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 23px auto 33px;
+}
+@media (max-width: 768px) {
+  .medical__h2-area {
+    width: 92px;
+    height: 92px;
+    margin: 24px auto 18px;
+  }
+}
+
+.medical__h2-inner {
+  text-align: center;
+  background-color: #DAEAEB;
+}
+
 .medical__header {
   margin: 0;
-  padding: 4.4rem 0 6.3rem;
-  text-align: center;
+  padding: 0;
 }
 @media (max-width: 768px) {
   .medical__header {
-    padding-top: 4.9rem;
-    margin-bottom: 3.8rem;
-  }
-}
-.medical__header::before {
-  content: "";
-  position: absolute;
-  top: 2%;
-  left: 50%;
-  transform: translatex(-50%);
-  width: 11.7rem;
-  height: 11.7rem;
-  border: 5px solid rgb(255, 255, 255);
-  border-radius: 50%;
-}
-@media (max-width: 768px) {
-  .medical__header::before {
-    width: 9.2rem;
-    height: 9.2rem;
-    top: 30%;
+    padding: 0 20px;
   }
 }
 
-.header--jp {
-  font-size: 1.6rem;
-}
-@media (max-width: 768px) {
-  .header--jp {
-    font-size: 1.4rem;
-    font-weight: 400;
-  }
-}
-
-.medical-grid {
+.medical-grid__area {
   max-width: 108rem;
   margin: 0 auto 5.6rem;
 }
 @media (max-width: 768px) {
-  .medical-grid {
+  .medical-grid__area {
     margin-bottom: 2.4rem;
   }
 }
@@ -939,8 +1014,8 @@ body {
 
 @media (max-width: 768px) {
   .btn-medical__text,
-.btn-news__text,
-.btn-virus__text {
+  .btn-news__text,
+  .btn-virus__text {
     font-size: 1.6rem;
   }
 }
@@ -964,10 +1039,29 @@ body {
   font-size: 2rem;
   text-align: center;
   padding: 0 3.4rem;
-  transition: all 0.3s ease;
+  transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transform: translateX(0);
+}
+.btn-medical .arrow,
+.btn-medical .arrow::before {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.btn-medical:hover .arrow,
+.btn-medical:hover .arrow::before {
+  background-color: #1A7D84;
+}
+.btn-medical:hover {
+  color: #1A7D84;
+  background-color: #fff;
+  border: 1px solid #1A7D84;
+  transform: translateX(30px);
 }
 @media (max-width: 768px) {
   .btn-medical {
@@ -978,22 +1072,41 @@ body {
     font-size: 2rem;
     text-align: center;
     padding: 0 2rem;
-    transition: all 0.3s ease;
+    transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
     display: flex;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transform: translateX(0);
+  }
+  .btn-medical .arrow,
+  .btn-medical .arrow::before {
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+  }
+  .btn-medical:hover .arrow,
+  .btn-medical:hover .arrow::before {
+    background-color: #1A7D84;
+  }
+  .btn-medical:hover {
+    color: #1A7D84;
+    background-color: #fff;
+    border: 1px solid #1A7D84;
+    transform: translateX(30px);
   }
 }
 
 @media (max-width: 768px) {
   .arrow-medical,
-.arrow-news,
-.arrow-virus {
+  .arrow-news,
+  .arrow-virus {
     width: 1.6rem;
   }
   .arrow-medical::before,
-.arrow-news::before,
-.arrow-virus::before {
+  .arrow-news::before,
+  .arrow-virus::before {
     width: 8px;
   }
 }
@@ -1043,27 +1156,33 @@ body {
 }
 
 .news {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2.6rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 0 40px;
   margin-bottom: 4.7rem;
 }
 @media (max-width: 768px) {
   .news {
-    gap: 0;
+    display: block;
     margin-bottom: 2.4rem;
   }
 }
 
 .news__h2-inner {
+  grid-column: 1;
+  grid-row: 1;
   margin-bottom: 5.2rem;
 }
 @media (max-width: 768px) {
   .news__h2-inner {
     margin-bottom: 0.7rem;
   }
+}
+
+.news__right {
+  grid-column: 2;
+  grid-row: 1/span 2; /* 1行目から2行目まで縦に結合 */
 }
 
 .news-header,
@@ -1119,6 +1238,8 @@ body {
 /*newsリンクボタン*/
 /* -----------------------------------------*/
 .btn-news {
+  grid-column: 1;
+  grid-row: 2;
   position: relative;
   z-index: 10;
   justify-content: flex-end;
@@ -1129,10 +1250,29 @@ body {
   font-size: 2rem;
   text-align: center;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transform: translateX(0);
+}
+.btn-news .arrow,
+.btn-news .arrow::before {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.btn-news:hover .arrow,
+.btn-news:hover .arrow::before {
+  background-color: #1A7D84;
+}
+.btn-news:hover {
+  color: #1A7D84;
+  background-color: #fff;
+  border: 1px solid #1A7D84;
+  transform: translateX(30px);
 }
 @media (max-width: 768px) {
   .btn-news {
@@ -1143,11 +1283,30 @@ body {
     font-size: 2rem;
     text-align: center;
     padding: 0 2rem;
-    transition: all 0.3s ease;
+    transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
     display: flex;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transform: translateX(0);
     margin: 0 auto;
+  }
+  .btn-news .arrow,
+  .btn-news .arrow::before {
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+  }
+  .btn-news:hover .arrow,
+  .btn-news:hover .arrow::before {
+    background-color: #1A7D84;
+  }
+  .btn-news:hover {
+    color: #1A7D84;
+    background-color: #fff;
+    border: 1px solid #1A7D84;
+    transform: translateX(30px);
   }
 }
 
@@ -1223,10 +1382,29 @@ body {
   font-size: 2rem;
   text-align: center;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
   display: flex;
   align-items: center;
+  justify-content: center;
   box-sizing: border-box;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transform: translateX(0);
+}
+.btn-virus .arrow,
+.btn-virus .arrow::before {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+.btn-virus:hover .arrow,
+.btn-virus:hover .arrow::before {
+  background-color: #1A7D84;
+}
+.btn-virus:hover {
+  color: #1A7D84;
+  background-color: #fff;
+  border: 1px solid #1A7D84;
+  transform: translateX(30px);
 }
 @media (max-width: 768px) {
   .btn-virus {
@@ -1237,11 +1415,30 @@ body {
     font-size: 2rem;
     text-align: center;
     padding: 0 2rem;
-    transition: all 0.3s ease;
+    transition: transform 0.8s ease, background-color 0.5s ease-in-out, color 0.5s ease-in-out;
     display: flex;
     align-items: center;
+    justify-content: center;
     box-sizing: border-box;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transform: translateX(0);
     margin: 0 auto 2.4rem;
+  }
+  .btn-virus .arrow,
+  .btn-virus .arrow::before {
+    background-color: #ffffff;
+    transition: background-color 0.3s ease;
+  }
+  .btn-virus:hover .arrow,
+  .btn-virus:hover .arrow::before {
+    background-color: #1A7D84;
+  }
+  .btn-virus:hover {
+    color: #1A7D84;
+    background-color: #fff;
+    border: 1px solid #1A7D84;
+    transform: translateX(30px);
   }
 }
 
@@ -1291,9 +1488,20 @@ body {
   }
 }
 
+@media (max-width: 768px) {
+  .map__area {
+    height: 118px;
+  }
+}
+
 .map__img {
   width: 100%;
   height: 30rem;
+}
+@media (max-width: 768px) {
+  .map__img {
+    height: 100%;
+  }
 }
 
 .acccess__list,
@@ -1304,7 +1512,7 @@ body {
 }
 @media (max-width: 768px) {
   .acccess__list,
-.access__address {
+  .access__address {
     display: block;
   }
 }
@@ -1350,6 +1558,11 @@ body {
   color: #1A7D84;
   max-width: 79rem;
   margin-bottom: 10.8rem;
+}
+@media (max-width: 768px) {
+  .reception {
+    margin-bottom: 4rem;
+  }
 }
 
 .reception__h2-inner {
@@ -1407,7 +1620,7 @@ body {
 }
 @media (max-width: 768px) {
   .reception__closed,
-.reception__reserve {
+  .reception__reserve {
     display: block;
   }
 }
@@ -1424,63 +1637,59 @@ body {
 /* =========================================*/
 /*footer section*/
 /* =========================================*/
-.footer__wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.footer {
   width: 100%;
   height: 37.5rem;
   background-color: #1A7D84;
   color: #fff;
 }
 @media (max-width: 768px) {
-  .footer__wrapper {
+  .footer {
     flex-direction: column;
     height: 42.8rem;
     justify-content: flex-start;
   }
 }
-.footer__wrapper .button--tel__number {
+.footer .button--tel__number {
   color: inherit;
 }
-.footer__wrapper .access__address {
+.footer .access__address {
   gap: 1.8rem;
   justify-content: flex-start;
 }
-.footer__wrapper .access__item {
+.footer .access__item {
   margin-bottom: 4.4rem;
 }
 @media (max-width: 768px) {
-  .footer__wrapper .access__item {
+  .footer .access__item {
     margin-bottom: 4.2rem;
   }
 }
 
-/* =========================================*/
-/*footer section*/
-/* =========================================*/
 .footer__wrapper {
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding-top: 71px;
+}
+@media (max-width: 768px) {
+  .footer__wrapper {
+    display: block;
+    padding-top: 41px;
+  }
 }
 
 .footer__left,
 .footer__right {
-  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 }
 @media (max-width: 768px) {
   .footer__left,
-.footer__right {
+  .footer__right {
     width: 100%;
-  }
-}
-
-@media (max-width: 768px) {
-  .footer__left {
-    margin-top: 4.1rem;
   }
 }
 
@@ -1503,5 +1712,4 @@ body {
   .footer .access__train {
     margin-bottom: 0;
   }
-}
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

@@ -48,8 +48,10 @@
         width: 100%;
         background-color: inherit;
         flex-direction: column-reverse;
+        justify-content: end;
     }
 }
+
 .heading__h1{
     margin-bottom: 6.7rem;
 }
@@ -73,6 +75,13 @@
     background-color: #fff;
     text-align: center;
     font-size: 2rem;
+    transition: transform .4s ease;
+    transform: scale(1);
+&:hover {
+    background-color: $bg-color;
+    transform: scale(1.1);
+    
+  }
 }
 .button--reserve{
     margin-bottom: 2.3rem;
