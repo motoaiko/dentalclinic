@@ -409,6 +409,9 @@ right: 0;
     @include button(28rem, 6rem, 1.8rem);
         &:hover{
             transform: translateX(-30px);
+            @include mobile{
+                transform: translateX(0);
+            }
         }
 
     @include mobile{

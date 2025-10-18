@@ -767,8 +767,18 @@ body {
   border: 1px solid #1A7D84;
   transform: translateX(30px);
 }
+@media (max-width: 768px) {
+  .btn-doctor:hover {
+    transform: translateX(0);
+  }
+}
 .btn-doctor:hover {
   transform: translateX(-30px);
+}
+@media (max-width: 768px) {
+  .btn-doctor:hover {
+    transform: translateX(0);
+  }
 }
 @media (max-width: 768px) {
   .btn-doctor {
@@ -882,6 +892,11 @@ body {
   background-color: #fff;
   border: 1px solid #1A7D84;
   transform: translateX(30px);
+}
+@media (max-width: 768px) {
+  .btn-clinic:hover {
+    transform: translateX(0);
+  }
 }
 @media (max-width: 768px) {
   .btn-clinic {
@@ -1064,6 +1079,11 @@ body {
   transform: translateX(30px);
 }
 @media (max-width: 768px) {
+  .btn-medical:hover {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 768px) {
   .btn-medical {
     width: 31.5rem;
     height: 4.5rem;
@@ -1095,6 +1115,11 @@ body {
     background-color: #fff;
     border: 1px solid #1A7D84;
     transform: translateX(30px);
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  .btn-medical:hover {
+    transform: translateX(0);
   }
 }
 
@@ -1275,6 +1300,11 @@ body {
   transform: translateX(30px);
 }
 @media (max-width: 768px) {
+  .btn-news:hover {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 768px) {
   .btn-news {
     width: 31.5rem;
     height: 4.5rem;
@@ -1307,6 +1337,11 @@ body {
     background-color: #fff;
     border: 1px solid #1A7D84;
     transform: translateX(30px);
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  .btn-news:hover {
+    transform: translateX(0);
   }
 }
 
@@ -1407,6 +1442,11 @@ body {
   transform: translateX(30px);
 }
 @media (max-width: 768px) {
+  .btn-virus:hover {
+    transform: translateX(0);
+  }
+}
+@media (max-width: 768px) {
   .btn-virus {
     width: 31.5rem;
     height: 4.5rem;
@@ -1439,6 +1479,11 @@ body {
     background-color: #fff;
     border: 1px solid #1A7D84;
     transform: translateX(30px);
+  }
+}
+@media (max-width: 768px) and (max-width: 768px) {
+  .btn-virus:hover {
+    transform: translateX(0);
   }
 }
 

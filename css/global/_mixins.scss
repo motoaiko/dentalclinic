@@ -33,18 +33,19 @@
   border: 1px solid transparent;
   cursor: pointer;
   transform: translateX(0);
+
       .arrow,
       .arrow::before {
         background-color: #ffffff;
         transition: background-color 0.3s ease;
-    }
+      }
 
-    &:hover {
-    .arrow,
-    .arrow::before {
-        background-color: #1A7D84;
-    }
-    }
+        &:hover {
+        .arrow,
+        .arrow::before {
+            background-color: #1A7D84;
+        }
+        }
 
 
   &:hover {
@@ -52,6 +53,9 @@
     background-color: #fff;
     border: 1px solid #1A7D84;
     transform: translateX(30px);
+    @include mobile{
+      transform: translateX(0);
+    }
   }
 }
 
